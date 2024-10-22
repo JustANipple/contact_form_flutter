@@ -4,12 +4,14 @@ class LabeledInput extends StatefulWidget {
   final bool isRequired;
   final String label;
   final double height;
+  final String error;
 
   const LabeledInput({
     super.key,
     required this.isRequired,
     required this.label,
     required this.height,
+    required this.error,
   });
 
   @override
@@ -54,6 +56,11 @@ class LabeledInputState extends State<LabeledInput> {
                   borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.surface, width: 1),
                 ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.error, width: 1),
+                ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
@@ -63,6 +70,12 @@ class LabeledInputState extends State<LabeledInput> {
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onPrimary,
                   ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return widget.error;
+                }
+                return null;
+              },
             ),
           ),
         ],
