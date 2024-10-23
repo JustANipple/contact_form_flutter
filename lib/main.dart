@@ -20,6 +20,7 @@ class MainApp extends StatelessWidget {
       create: (BuildContext context) => FormProvider(),
       child: Consumer<FormProvider>(
         builder: (context, formProvider, child) => MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: lightTheme,
           home: const Scaffold(
             backgroundColor: Color.fromRGBO(224, 241, 232, 1),
@@ -68,28 +69,28 @@ class _ContactFormState extends State<ContactForm> {
                     .headlineLarge!
                     .copyWith(color: Theme.of(context).colorScheme.onPrimary),
               ),
-              const SizedBox(height: 44),
+              const SizedBox(height: 35),
               const LabeledInput(
                 isRequired: true,
                 label: "First Name",
                 height: 51,
                 error: "This field is required",
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
               const LabeledInput(
                 isRequired: true,
                 label: "Last Name",
                 height: 51,
                 error: "This field is required",
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
               const LabeledInput(
                 isRequired: true,
                 label: "Email Address",
                 height: 51,
                 error: "Please enter a valid email address",
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
               const RadioButtons(),
               const SizedBox(height: 25),
               const LabeledInput(
@@ -97,9 +98,9 @@ class _ContactFormState extends State<ContactForm> {
                 label: "Message",
                 height: 216,
                 error: "This field is required",
-                minLines: 10,
+                minLines: 8,
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 30),
               const LabeledCheckbox(),
               const SizedBox(height: 40),
               SubmitButton(formKey: _formKey),
