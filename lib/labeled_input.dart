@@ -5,6 +5,7 @@ class LabeledInput extends StatefulWidget {
   final String label;
   final double height;
   final String error;
+  final int? minLines;
 
   const LabeledInput({
     super.key,
@@ -12,6 +13,7 @@ class LabeledInput extends StatefulWidget {
     required this.label,
     required this.height,
     required this.error,
+    this.minLines,
   });
 
   @override
@@ -43,10 +45,10 @@ class LabeledInputState extends State<LabeledInput> {
             ),
           ),
           const SizedBox(height: 5),
-          SizedBox(
-            height: widget.height,
+          Container(
+            constraints: const BoxConstraints(minHeight: 59),
             child: TextFormField(
-              minLines: 10,
+              minLines: widget.minLines ?? 1,
               maxLines: 10,
               cursorColor: Theme.of(context).colorScheme.onPrimary,
               cursorWidth: .5,

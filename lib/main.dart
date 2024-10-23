@@ -23,8 +23,10 @@ class MainApp extends StatelessWidget {
           theme: lightTheme,
           home: const Scaffold(
             backgroundColor: Color.fromRGBO(224, 241, 232, 1),
-            body: Center(
-              child: ContactForm(),
+            body: SafeArea(
+              child: Center(
+                child: ContactForm(),
+              ),
             ),
           ),
         ),
@@ -57,7 +59,16 @@ class _ContactFormState extends State<ContactForm> {
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Text(
+                "Contact Us",
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineLarge!
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              ),
+              const SizedBox(height: 44),
               const LabeledInput(
                 isRequired: true,
                 label: "First Name",
@@ -86,10 +97,11 @@ class _ContactFormState extends State<ContactForm> {
                 label: "Message",
                 height: 216,
                 error: "This field is required",
+                minLines: 10,
               ),
               const SizedBox(height: 25),
               const LabeledCheckbox(),
-              const SizedBox(height: 45),
+              const SizedBox(height: 40),
               SubmitButton(formKey: _formKey),
             ],
           ),

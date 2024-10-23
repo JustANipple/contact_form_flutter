@@ -35,23 +35,28 @@ class _RadioTileState extends State<RadioTile> {
       ),
       constraints: const BoxConstraints(maxWidth: 320),
       child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 25),
         title: Text(
           widget.title,
-          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
         ),
-        leading: Radio<QueryType>(
-          fillColor: WidgetStateProperty.all(
-            query == widget.queryType
-                ? Theme.of(context).colorScheme.secondary
-                : Theme.of(context).colorScheme.surface,
+        leading: Container(
+          constraints: const BoxConstraints(maxWidth: 20),
+          child: Radio<QueryType>(
+            fillColor: WidgetStateProperty.all(
+              query == widget.queryType
+                  ? Theme.of(context).colorScheme.secondary
+                  : Theme.of(context).colorScheme.surface,
+            ),
+            value: widget.queryType,
+            groupValue: query,
+            onChanged: (QueryType? value) {
+              Provider.of<FormProvider>(context, listen: false)
+                  .setQuery(value!);
+            },
           ),
-          value: widget.queryType,
-          groupValue: query,
-          onChanged: (QueryType? value) {
-            Provider.of<FormProvider>(context, listen: false).setQuery(value!);
-          },
         ),
       ),
     );

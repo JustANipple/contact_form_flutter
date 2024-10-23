@@ -25,7 +25,58 @@ class SubmitButton extends StatelessWidget {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Processing Data')),
+              SnackBar(
+                behavior: SnackBarBehavior.floating,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                content: Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  child: Card(
+                    elevation: 10,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 27),
+                      child: Column(
+                        children: [
+                          Row(children: [
+                            Icon(
+                              Icons.check_circle_outline,
+                              color: Theme.of(context).colorScheme.primary,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              "Message Sent!",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                          ]),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Thanks for completing the form. We'll be in touch soon!",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             );
           }
         },
